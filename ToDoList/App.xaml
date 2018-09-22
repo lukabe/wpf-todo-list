@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:ToDoList"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style x:Key="MenuButtonStyle" TargetType="Button">
+        <Style x:Key="MainMenuButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -16,7 +16,7 @@
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsFocused" Value="True">
+                            <Trigger Property="IsPressed" Value="True">
                                 <Setter TargetName="border" Property="BorderBrush" Value="#FFE844" />
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -27,23 +27,52 @@
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#9c9c9c"/>
                 </Trigger>
-                <Trigger Property="IsFocused" Value="True">
+                <Trigger Property="IsPressed" Value="True">
                     <Setter Property="Background" Value="#9c9c9c"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="AddButtonStyle" TargetType="Button">
+        <Style x:Key="TasksMenuButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Focusable" Value="False" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}">
-                            <ContentPresenter />
+                        <StackPanel Background="{TemplateBinding Background}" Width="65" Margin="0,5,0,0">
+                            <Image Source="{TemplateBinding Tag}" Height="25" Width="25" Margin="0,10,0,0" />
+                            <Label Content="{TemplateBinding Content}" HorizontalAlignment="Center" FontSize="12" FontWeight="Bold"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#d9e1e5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ListViewItem">
+            <Setter Property="Background" Value="#ffffff" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border Background="{TemplateBinding Background}" Margin="0,6,10,0">
+                            <ContentPresenter Margin="10,5,10,5"/>
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="5" ShadowDepth="3" />
+                            </Border.Effect>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#d9e1e5"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#d9e1e5"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="FunctionButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#4788c8" />
@@ -65,6 +94,11 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#9c9c9c"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Application.Resources>
 </Application>

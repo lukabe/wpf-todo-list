@@ -2,9 +2,9 @@
 
 namespace ToDoList
 {
-    public partial class MainWindow : Window
+    public partial class TaskInfoWindow : Window
     {
-        public MainWindow()
+        public TaskInfoWindow()
         {
             InitializeComponent();
         }

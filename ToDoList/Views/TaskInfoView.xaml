@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="ToDoList.Views.TaskInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ToDoList.Views">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,20,134,0" HorizontalAlignment="Right" >
+                <Image Source="Images/task-icon.png" Height="32" Width="32" Margin="0,0,10,0"/>
+                <TextBlock HorizontalAlignment="Left"  FontSize="16" Foreground="#4788c8" FontFamily="Segoe UI Black" VerticalAlignment="Center" Text="Informacje o zadaniu"/>
+            </StackPanel>
+            <local:TaskView />
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,25,0,0" HorizontalAlignment="Center" >
+                <Button Content="Edytuj" Style="{StaticResource FunctionButtonStyle}" Command="{Binding UpdateTaskCmd}" />
+                <!--Button Content="Anuluj" Style="{StaticResource FunctionButtonStyle}" Margin="20,0,0,0" Command="{Binding CloseWindowCmd}" /-->
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

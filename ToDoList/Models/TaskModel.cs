@@ -1,14 +1,11 @@
 namespace ToDoList.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
-    public partial class Task
+    public partial class TaskModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
         public int TaskId { get; set; }
 
         [Required]
@@ -24,6 +21,6 @@ namespace ToDoList.Models
 
         public int? ProjectId { get; set; }
 
-        public virtual Project Project { get; set; }
+        public virtual ProjectModel Project { get; set; }
     }
 }

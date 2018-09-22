@@ -1,19 +1,16 @@
 namespace ToDoList.Models
 {
-    using System;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
 
     public partial class DatabaseEntities : DbContext
     {
         public DatabaseEntities()
-            : base("name=DatabaseEntities")
+            : base("name=DatabaseConnection")
         {
         }
 
-        public virtual DbSet<Project> Projects { get; set; }
-        public virtual DbSet<Task> Tasks { get; set; }
+        public virtual DbSet<ProjectModel> Projects { get; set; }
+        public virtual DbSet<TaskModel> Tasks { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

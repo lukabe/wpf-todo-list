@@ -1,13 +1,13 @@
-﻿<Window x:Class="ToDoList.NewTaskWindow"
+﻿<Window x:Class="ToDoList.TaskInfoWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:ToDoList.ViewModels"
         xmlns:v="clr-namespace:ToDoList.Views"
-        Title="Nowe zadanie" Height="405" Width="410" WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Title="Informacje o zadaniu" Height="405" Width="410" WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
         Content="{Binding DataContext, RelativeSource={RelativeSource Self}}">
     <Window.Resources>
-        <DataTemplate DataType="{x:Type vm:NewTaskViewModel}">
-            <v:NewTaskView />
+        <DataTemplate DataType="{x:Type vm:TaskInfoViewModel}">
+            <v:TaskInfoView />
         </DataTemplate>
     </Window.Resources>
 </Window>

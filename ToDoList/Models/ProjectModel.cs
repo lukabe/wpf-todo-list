@@ -1,20 +1,17 @@
 namespace ToDoList.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
-    public partial class Project
+    public partial class ProjectModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Project()
+        public ProjectModel()
         {
-            Tasks = new HashSet<Task>();
+            Tasks = new HashSet<TaskModel>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
         public int ProjectId { get; set; }
 
         [Required]
@@ -24,6 +21,6 @@ namespace ToDoList.Models
         public bool IsDone { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Task> Tasks { get; set; }
+        public virtual ICollection<TaskModel> Tasks { get; set; }
     }
 }
