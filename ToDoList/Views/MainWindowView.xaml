@@ -48,7 +48,7 @@
             </Grid.Background>
             <Label Content="{Binding SelectedDate}" FontSize="16" Foreground="#ffffff" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" ContentStringFormat="{Binding DateStringFormat}"/>
         </Grid>
-        <ListView Grid.Row="1" Grid.RowSpan="5" Grid.Column="1" ItemsSource="{Binding Tasks}" SelectedItem="{Binding SelectedTask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch" BorderThickness="0" Background="Transparent" Margin="5" >
+        <ListView Grid.Row="1" Grid.RowSpan="5" Grid.Column="1" ItemContainerStyle="{StaticResource TasksListViewStyle}" ItemsSource="{Binding Tasks}" SelectedItem="{Binding SelectedTask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch" BorderThickness="0" Background="Transparent" Margin="5" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Grid.ColumnSpan="3" >
@@ -57,13 +57,13 @@
                                 <RowDefinition Height="26"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="50" />
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="150" />
                             </Grid.ColumnDefinitions>
                             <CheckBox Grid.Column="0" IsChecked="{Binding IsDone}" FontSize="16" VerticalAlignment="Center" IsEnabled="False" />
                             <TextBlock Grid.Column="1" Text="{Binding Name}" FontSize="14" VerticalAlignment="Center" />
-                            <Line Grid.Column="1" Grid.ColumnSpan="2" Stretch="Fill" Stroke="#414142" StrokeThickness="1" X1="{Binding IsDone}" Margin="0,3,0,0" />
+                            <Line Grid.Column="1" Grid.ColumnSpan="2" Stretch="Fill" Stroke="#414142" StrokeThickness="1.5" X1="{Binding IsDone}" Margin="0,3,0,0" />
                             <TextBlock Grid.Column="2" Text="{Binding DueDate, StringFormat=H:mm}" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" />
                         </Grid>
                     </Border>

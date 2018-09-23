@@ -6,11 +6,11 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,10,40,0" HorizontalAlignment="Right">
                 <Label Content="Nazwa" FontSize="14" Margin="0,0,10,0" />
-                <TextBox Height="23" Width="260" VerticalContentAlignment="Center" FontSize="14" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Height="23" Width="260" VerticalContentAlignment="Center" FontSize="14" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" MaxLength="50" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,8,40,0" HorizontalAlignment="Right">
                 <Label Content="Notatka" FontSize="14" Margin="0,0,10,0" />
-                <TextBox Height="60" Width="260" FontSize="14" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="{Binding Note, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Height="60" Width="260" FontSize="14" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="{Binding Note, UpdateSourceTrigger=PropertyChanged}" MaxLength="250" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,20,154,0" HorizontalAlignment="Right">
                 <Image Source="Images/due-date-icon.png" Height="32" Width="32" Margin="0,0,10,0"/>

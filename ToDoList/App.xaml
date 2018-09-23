@@ -51,7 +51,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <Style TargetType="ListViewItem">
+        <Style x:Key="TasksListViewStyle" TargetType="ListViewItem">
             <Setter Property="Background" Value="#ffffff" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -73,6 +73,18 @@
                     <Setter Property="Background" Value="#d9e1e5"/>
                 </Trigger>
             </Style.Triggers>
+        </Style>
+        <Style x:Key="DefaultListViewStyle" TargetType="ListViewItem">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border Background="{TemplateBinding Background}" >
+                            <ContentPresenter Margin="5,5,5,0" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style x:Key="FunctionButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#4788c8" />

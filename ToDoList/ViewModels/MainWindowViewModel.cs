@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.Windows.Threading;
 using ToDoList.Models;
 using ToDoList.Services;
 
@@ -16,11 +17,14 @@ namespace ToDoList.ViewModels
             _openTaskInfoWindowCmd = new DelegateCommand(OpenTaskInfo, CanOpenTaskWindow);
             _deleteTaskCmd = new DelegateCommand(DeleteTask, CanDeleteTask);
             _changeTaskStateCmd = new DelegateCommand(ChangeTaskState, CanChangeTaskState);
+
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(30) };
+            timer.Tick += ShowNotifications;
+            timer.Start();
         }
 
         private void FillTasks()
         {
-            //_tasks = DataFactory.GetAllTasks();
             _tasks = DataFactory.GetTasksByDate(_selectedDate);
         }
 
@@ -48,6 +52,21 @@ namespace ToDoList.ViewModels
             else
             {
                 DateStringFormat = "dd-MM-yyyy";
+            }
+        }
+
+        private void ShowNotifications(object sender, EventArgs e)
+        {
+            var upcomingTasks = DataFactory.GetUpcomingTasks();
+
+            if (upcomingTasks.Count > 0)
+            {
+                var vm = new NotificationViewModel(upcomingTasks);
+                NotificationPopup popup = new NotificationPopup
+                {
+                    DataContext = vm
+                };
+                popup.Show();
             }
         }
 
@@ -246,7 +265,6 @@ namespace ToDoList.ViewModels
                     _showUndefinedCmd = new DelegateCommand(delegate ()
                     {
                         SelectedDate = DateTime.MinValue;
-                        RefreshList();
                     });
                 }
                 return _showUndefinedCmd;

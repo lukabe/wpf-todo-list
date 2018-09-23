@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
@@ -22,7 +23,9 @@ namespace ToDoList.Services
             using (var context = new DatabaseEntities())
             {
                 var tasks = from t in context.Tasks
-                            where EntityFunctions.TruncateTime(t.DueDate) == EntityFunctions.TruncateTime(date)
+                            where t.DueDate.Value.Year == date.Year
+                                & t.DueDate.Value.Month == date.Month
+                                & t.DueDate.Value.Day == date.Day
                             orderby t.DueDate
                             select t;
 
@@ -79,6 +82,23 @@ namespace ToDoList.Services
                 var taskToUpdate = context.Tasks.Find(task.TaskId);
                 taskToUpdate.IsDone = !task.IsDone;
                 context.SaveChanges();
+            }
+        }
+
+        public static List<TaskModel> GetUpcomingTasks()
+        {
+            var date = DateTime.Now.AddHours(3);
+
+            using (var context = new DatabaseEntities())
+            {
+                var tasks = from t in context.Tasks
+                            where t.DueDate > DateTime.Now 
+                                & t.DueDate <= date
+                                & t.IsDone == false
+                            orderby t.DueDate
+                            select t;
+
+                return tasks.ToList();
             }
         }
     }
