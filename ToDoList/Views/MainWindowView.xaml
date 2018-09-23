@@ -64,7 +64,22 @@
                             <CheckBox Grid.Column="0" IsChecked="{Binding IsDone}" FontSize="16" VerticalAlignment="Center" IsEnabled="False" />
                             <TextBlock Grid.Column="1" Text="{Binding Name}" FontSize="14" VerticalAlignment="Center" />
                             <Line Grid.Column="1" Grid.ColumnSpan="2" Stretch="Fill" Stroke="#414142" StrokeThickness="1.5" X1="{Binding IsDone}" Margin="0,3,0,0" />
-                            <TextBlock Grid.Column="2" Text="{Binding DueDate, StringFormat=H:mm}" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                            <TextBlock Grid.Column="2" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" >
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Text" Value="{Binding DueDate, StringFormat=H:mm}"/>
+                                        <Style.Triggers>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding DueDate.Hour}" Value="0" />
+                                                    <Condition Binding="{Binding DueDate.Minute}" Value="0" />
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Text" Value=""/>
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
                         </Grid>
                     </Border>
                 </DataTemplate>
